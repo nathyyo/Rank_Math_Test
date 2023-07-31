@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -13,7 +13,21 @@ interface GraphProps {
 }
 
 const Graph: React.FC<GraphProps> = ({ selectedTab }) => {
-  // You should replace this with actual data
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const data = [
     { name: "Mon", uv: 4000, pv: 2400, amt: 2400 },
     { name: "Tue", uv: 3000, pv: 1398, amt: 2210 },
@@ -27,7 +41,7 @@ const Graph: React.FC<GraphProps> = ({ selectedTab }) => {
   return (
     <div className="graph flex justify-center bg-white dark:bg-black dark:border dark:border-white rounded-3xl my-4">
       <AreaChart
-        width={(90 * window.innerWidth) / 100}
+        width={(90 * windowWidth) / 100}
         height={250}
         data={data}
       >
