@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+header .logo {
+  font-size: 24px;
+}
+
+header .menu-icon {
+  cursor: pointer;
+}
+
+header nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tabs div {
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+}
+
+.tabs .active {
+  color: white;
+  background: #989898;
+  border-radius: 3rem;
+}
+
+.graph {
+  padding: 20px;
+}
